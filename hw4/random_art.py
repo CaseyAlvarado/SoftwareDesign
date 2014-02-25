@@ -10,6 +10,8 @@ from random import randint
 from math import *
 import Image
 
+## SS: It took me a bit of reading to figure out what "Xv" and "Yv" do, it might be nice to include
+##     them in your doc string or where you declare the 'functions' list. 
 def build_random_function(min_depth, max_depth):
     """This function takes in a minimumum level depth of recursion and a maximum level. The it randomly computes a long function. Recursion allows the function to have many depths. """ 
         
@@ -26,7 +28,10 @@ def build_random_function(min_depth, max_depth):
         return [functions[randomIndex], build_random_function(min_depth-1, max_depth-1)] #if the random number generated is 1 or 2 then it is a sin or cos and this is the format
     if functions[randomIndex] == "x^2" or "y^2": 
         return [functions[randomIndex], (build_random_function(mindepth-1, max_depth-1))**2] #use this function to evaluate a part of a list and square the result 
-    
+
+## SS: Passed my tests :)
+## SS: for this function, you might make use of 'elif' statements, even though the functionailty
+##     is the same, stylistically, it's preferable
 def evaluate_random_function(f, x, y):
     """This function takes in a function, f, with many levels within each argument. It also takes in x, an x corrdinate on the pixel plane. 
     Along with that, it takes in y, a y coordinate on the pixel plane. This function goes through each element of the list
@@ -50,6 +55,7 @@ def evaluate_random_function(f, x, y):
     if f[0] == "y^2": 
         return (evaluate_random_function(f[1],x,y))**2 #this calls itself --recursion--until only a value is left and then squares the final result
 
+## SS: Doc string please?? 
 def i_dislike_pictures(filename):  
     
     funcGreen= build_random_function(1,1) #this function acquires an equation for the green portion of the picture
@@ -69,6 +75,10 @@ def i_dislike_pictures(filename):
             pixels[i,k]= (int(Red),int(Green),int(Blue)) #makes image 
     im.save(filename) #saves image 
     
+## SS: Passed my tests :)
+## SS: And nice job on naming your intermediate variables, it makes a lot of sense to read, and 
+##     because you have a descriptive doc string and good variable names, I don't see the need for
+##     the comments beside each line, only include them if they're helpful to you. 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
     """ Maps the input value that is in the interval [input_interval_start, input_interval_end]
         to the output interval [output_interval_start, output_interval_end].  The mapping
