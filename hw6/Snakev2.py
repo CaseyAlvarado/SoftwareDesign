@@ -129,7 +129,7 @@ class PyGameKeyboardController:
             self.snake.set_direction((0,-1))
 
 if __name__ == '__main__':
-    
+    pygame.init()
     prompt = raw_input("S N A K E \n Type 'play' to start a new game: ");
     if prompt.lower() == "play":
         size = (700,700)
@@ -137,19 +137,22 @@ if __name__ == '__main__':
         pygame.display.set_caption("S N A K E")
         
         model = SnakeModel()
-        view = PyGameWindowView(model,screen,model.pellet)
+        view = PyGameWindowView(model,screen,model.pellet) ##pellet? snake?
         controller = PyGameKeyboardController(model)
         
     
         
-        playing = True
+        #playing = True
         running = True
-        while model.snake.update():
-            while running:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
-                model.update()
-                view.draw()
-                time.sleep(0.01)
+        #while model.snake.update():
+        while running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                if event.type ==KEYDOWN:
+                    controller.handle_keyboard_event(event)
+            model.update()
+            view.draw()
+            time.sleep(0.01)
         pygame.quit()
+        
